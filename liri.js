@@ -30,17 +30,17 @@ for (i = 3; i < input.length; i++) {
 	name = name + " " + input[i];
 }
 
-
+name = name.trim().replace(" ", "+");
 
 function spotify() {
-	name = name.trim().replace(" ", "+");
-	// var client = new Spotify(keys);
+	
+	var client = new Spotify(keys);
 	if (command === "spotify-this-song") {
 		if (name === "") {
 			name = "The Sign"
 		}
 		//same song info as above but looking at info for "The Sign" by Ace of Base.
-		keys.search({ type: 'track', query: name, limit: 6 }, function (err, data) {
+		client.search({ type: 'track', query: name, limit: 6 }, function (err, data) {
 			if (err) {
 				return console.log('Error occurred: ' + err);
 			}
