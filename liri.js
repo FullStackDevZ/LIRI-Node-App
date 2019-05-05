@@ -23,8 +23,7 @@ var input = process.argv;
 //gets user command
 var command = input[2];
 
-
-//grabs movie or song names to put into request
+//Takes the user input
 var name = "";
 for (i = 3; i < input.length; i++) {
 	name = name + " " + input[i];
@@ -33,13 +32,13 @@ for (i = 3; i < input.length; i++) {
 name = name.trim().replace(" ", "+");
 
 function spotify() {
-	
+
 	var client = new Spotify(keys);
 	if (command === "spotify-this-song") {
 		if (name === "") {
 			name = "The Sign"
 		}
-		//same song info as above but looking at info for "The Sign" by Ace of Base.
+
 		client.search({ type: 'track', query: name, limit: 6 }, function (err, data) {
 			if (err) {
 				return console.log('Error occurred: ' + err);
@@ -47,16 +46,16 @@ function spotify() {
 
 			var track = data.tracks.items[5];
 			var song =
-				"-----------------------------------------------------------------------" + "\r\n" +
+				"=========================================================================" + "\r\n" +
 				"Song: " + name + "\r\n" +
 				"Artist: " + track.artists[0].name + "\r\n" +
 				"Album: " + track.album.name + "\r\n" +
 				"Link to Preview: " + track.preview_url + "\r\n" +
-				"-----------------------------------------------------------------------" + "\r\n"
+				"=========================================================================" + "\r\n"
 			console.log(song);
 			writeToLog(song);
 		})
-
+		
 	}
 }
 
