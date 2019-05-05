@@ -120,17 +120,17 @@ function doWhat() {
 
 			spotify.search({ type: 'track', query: name, limit: 1 }, function (err, data) {
 				if (err) {
-					return console.log('Error occurred: ' + err);
+					return console.log('Incorrect Input: ' + err);
 				}
 
 				var track = data.tracks.items[0];
 				var randomSong =
-					"-----------------------------------------------------------------------" + "\r\n" +
+					"=========================================================================" + "\r\n" +
 					"Song: " + name + "\r\n" +
 					"Artist: " + track.artists[0].name + "\r\n" +
 					"Album: " + track.album.name + "\r\n" +
 					"Click to Preview: " + track.preview_url + "\r\n" +
-					"-----------------------------------------------------------------------" + "\r\n"
+					"=========================================================================" + "\r\n"
 				console.log(randomSong);
 				writeToLog(randomSong);
 			})
@@ -141,8 +141,8 @@ function doWhat() {
 doWhat();
 
 // Appends to log.txt
-function writeToLog(printInfo) {
-	fs.appendFile("log.txt", printInfo, function (err) {
+function writeToLog(printData) {
+	fs.appendFile("log.txt", printData, function (err) {
 
 		// Errors are sent to log.txt
 		if (err) {
